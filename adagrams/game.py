@@ -28,6 +28,15 @@ LETTER_POOL = {
     'Y': 2, 
     'Z': 1
 }
+SCORE_CHART = { "A":1, "E":1, "I":1, "O":1, "U":1, "L":1, "N":1, "R":1, "S":1, "T":1, 
+            "D":2,"G":2, 
+            "B":3, "C":3, "M":3, "P":3,
+            "F":4, "H":4, "V":4, "W":4, "Y":4,
+            "K":5,
+            "J":8,"X":8,
+            "Q":10,"Z":10
+            }
+
 def draw_letters():
     #this is the array that will be returned
     list_ten_strings = []
@@ -49,15 +58,35 @@ def draw_letters():
         list_ten_strings.append(letter)
         bag.pop(random_letter)
 
-
-
     return list_ten_strings
     pass
 
 def uses_available_letters(word, letter_bank):
+
+    letters_copy = letter_bank.copy()
+
+    for letter in word:
+        letter = letter.upper()
+        if letter not in letters_copy:
+            return False
+        letters_copy.remove(letter)
+    return True
+        
+
+
     pass
 
 def score_word(word):
+    total_score = 0
+
+    for char in word:
+        char = char.upper()
+        total_score += SCORE_CHART[char]
+    if len(word) >= 7:
+        total_score += 8
+
+
+    return total_score 
     pass
 
 def get_highest_word_score(word_list):
