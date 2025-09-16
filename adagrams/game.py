@@ -72,10 +72,6 @@ def uses_available_letters(word, letter_bank):
         letters_copy.remove(letter)
     return True
         
-
-
-    pass
-
 def score_word(word):
     total_score = 0
 
@@ -87,7 +83,21 @@ def score_word(word):
 
 
     return total_score 
-    pass
 
 def get_highest_word_score(word_list):
-    pass
+    highest_word_score = 0
+    winning_word = ""
+    for word in word_list:
+        current_score = score_word(word)
+        if current_score > highest_word_score:
+            highest_word_score = current_score
+            winning_word = word
+        elif current_score == highest_word_score:
+            if len(winning_word) != 10 and len(word) == 10:
+                #first tie-breaker
+                winning_word = word
+            elif len(winning_word) != 10 and len(word) < len(winning_word):
+                #second tie-breaker
+                winning_word = word
+
+    return (winning_word, highest_word_score)
