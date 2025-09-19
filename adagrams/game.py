@@ -93,3 +93,12 @@ def get_highest_word_score(word_list):
             highest_scoring_word_list = [word]
         elif current_score == highest_word_score:
             highest_scoring_word_list.append(word)
+    winning_word = highest_scoring_word_list[0]
+
+    for word in highest_scoring_word_list:
+        if len(winning_word) != 10:
+        #Replacing word
+            if len(word) < len(winning_word) or len(word) == 10:
+                winning_word = word
+
+    return (winning_word, highest_word_score)
