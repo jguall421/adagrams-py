@@ -41,11 +41,7 @@ def draw_letters():
     #this is the array that will be returned
     list_ten_strings = []
 
-    #copy of the dictionary instead of using .copy
-    letter_pool = LETTER_POOL.copy()
-
     #new list called bag to add the random keys frequency
-
     bag = []
         
     for a_single_letter, count in LETTER_POOL.items():
@@ -62,15 +58,16 @@ def draw_letters():
     pass
 
 def uses_available_letters(word, letter_bank):
-
-    letters_copy = letter_bank.copy()
-
-    for letter in word:
-        letter = letter.upper()
-        if letter not in letters_copy:
-            return False
-        letters_copy.remove(letter)
-    return True
+    
+    letter_pool = letter_bank.copy()
+    for char in word:
+        char = char.upper()
+        if not(char in letter_pool):
+                return False
+        else: 
+            #removing char from letter_pool
+            letter_pool.remove(char)
+    return True 
         
 def score_word(word):
     total_score = 0
