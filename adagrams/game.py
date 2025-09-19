@@ -73,7 +73,23 @@ def uses_available_letters(word, letter_bank):
     return True
         
 def score_word(word):
-    pass
+    total_score = 0
+    for char in word:
+        char = char.upper()
+        total_score += SCORE_CHART[char]
+    if len(word) >= 7:
+        total_score += 8
+    
+    return total_score
+
 
 def get_highest_word_score(word_list):
-    pass
+    highest_scoring_word_list = []
+    highest_word_score = 0
+    for word in word_list:
+        current_score = score_word(word)
+        if current_score > highest_word_score:
+            highest_word_score = current_score
+            highest_scoring_word_list = [word]
+        elif current_score == highest_word_score:
+            highest_scoring_word_list.append(word)
